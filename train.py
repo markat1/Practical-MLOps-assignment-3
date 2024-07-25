@@ -50,7 +50,6 @@ def main(args):
     output_dir = "/opt/ml/model"
 
     if environment == "local":
-        train_data_path = "data/train/train.csv"
         output_dir = "output"
 
     X = train_data.drop('Time_taken(min)', axis=1)
