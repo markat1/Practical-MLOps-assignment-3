@@ -3,23 +3,17 @@ import datetime
 import os
 from dotenv import load_dotenv
 
-# Load secret .env file
 load_dotenv()
 
-# Store credentials
-pwd = os.getenv('MY_PASSWORD')
-key = os.getenv('MY_API_KEY')
-
 # Define AWS credentials and region
-# region = "us-east-1"
-region = "eu-north-1"
-
-role_arn = "arn:aws:iam::unknown:role/sagemaker_execution"
+region = os.getenv('REGION')
+role_arn = os.getenv('SAGEMAKER_ROLE')
 
 # Define ECR image and S3 paths
-ecr_image = "unknown"
-s3_input_train = "s3://unknown/data/train"
-s3_output_path = "s3://unknown/output"
+ecr_image = os.getenv('ECR_IMAGE')
+s3_input_train = os.getenv('S3_INPUT_TRAIN')
+s3_output_path = os.getenv('S3_OUTPUT_PATH')
+training_job_name = os.getenv('TRAINING_JOB_NAME')
 
 # Initialize Boto3 SageMaker client
 sagemaker_client = boto3.client("sagemaker", region_name=region)
@@ -31,7 +25,7 @@ sagemaker_client = boto3.client("sagemaker", region_name=region)
 
 # Create training job configuration
 training_job_config = {
-    "TrainingJobName": "unknown",
+    "TrainingJobName": training_job_name,
     "AlgorithmSpecification": {"TrainingImage": ecr_image, "TrainingInputMode": "File"},
     "RoleArn": role_arn,
     "InputDataConfig": [
