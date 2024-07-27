@@ -9,19 +9,17 @@ load_dotenv()
 region = os.getenv('REGION')
 role_arn = os.getenv('SAGEMAKER_ROLE')
 
-# Define ECR image and S3 paths
+#Define ECR image and S3 paths
 ecr_image = os.getenv('ECR_IMAGE')
 s3_input_train = os.getenv('S3_INPUT_TRAIN')
 s3_output_path = os.getenv('S3_OUTPUT_PATH')
 training_job_name = os.getenv('TRAINING_JOB_NAME')
 
+
 # Initialize Boto3 SageMaker client
 sagemaker_client = boto3.client("sagemaker", region_name=region)
 
 # Define training job name
-# training_job_name = (
-#     f'custom-training-job-{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}'
-# )
 
 # Create training job configuration
 training_job_config = {

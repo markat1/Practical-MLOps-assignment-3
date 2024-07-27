@@ -1,6 +1,7 @@
 import subprocess
 import os
 
+
 def main():
     environment = os.getenv("ENVIRONMENT", "local")
     mode = os.getenv("MODE", "train")
