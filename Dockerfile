@@ -12,6 +12,8 @@ ENV ENVIRONMENT="cloud"
 COPY train.py /opt/ml/code/train.py
 COPY inference.py /opt/ml/code/inference.py 
 COPY main.py /opt/ml/code/main.py
+COPY preprocessing.py /opt/ml/code/preprocessing.py
+
 
 # Define the entry point for the container
 ENTRYPOINT ["python", "/opt/ml/code/main.py"]
