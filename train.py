@@ -61,7 +61,7 @@ def main(args):
     #model_columns = X.columns.tolist()
 
     # Save the model and the column names
-    joblib.dump((model, model_columns), model_path)
+    joblib.dump((model, label_encoders, scaler, model_columns), model_path)
     print(f"Model saved to {model_path}")
     # joblib.dump(model, model_path)
     # print(f"Model saved to {model_path}")
