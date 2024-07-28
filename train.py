@@ -40,10 +40,12 @@ def main(args):
 
     label_encoders = dp.label_encoding(X)                      # Label Encoding
     X_train, X_test, y_train, y_test = dp.data_split(X, y)     # Test Train Split
+    model_columns = X_train.columns.tolist()
+
     X_train, X_test, scaler = dp.standardize(X_train, X_test)  # Standardization
 
     # Build Model
-    model = xgb.XGBRegressor(n_estimators=20, max_depth=9)
+    model = xgb.XGBRegressor(n_estimators=args.n_estimators, max_depth=9)
     model.fit(X_train, y_train)
 
     # Evaluate Model
@@ -56,8 +58,13 @@ def main(args):
 
     # Save model
     model_path = os.path.join(output_dir, "model.joblib")
-    joblib.dump(model, model_path)
+    #model_columns = X.columns.tolist()
+
+    # Save the model and the column names
+    joblib.dump((model, model_columns), model_path)
     print(f"Model saved to {model_path}")
+    # joblib.dump(model, model_path)
+    # print(f"Model saved to {model_path}")
 
 
 if __name__ == "__main__":
